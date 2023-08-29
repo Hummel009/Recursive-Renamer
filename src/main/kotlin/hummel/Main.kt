@@ -15,7 +15,6 @@ fun renameFiles(folder: File) {
 					val newFileName = fileName.replace("khommurat", "hoarmurath")
 					val newFile = File(file.parent, newFileName)
 					file.renameTo(newFile)
-					println("Renamed file: $fileName -> $newFileName")
 				}
 			}
 		}
