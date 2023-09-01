@@ -70,7 +70,7 @@ class GUI : JFrame() {
 	}
 
 	init {
-		title = "Recursive Renamer"
+		title = "Hummel009's Recursive Renamer"
 		defaultCloseOperation = EXIT_ON_CLOSE
 		setBounds(100, 100, 550, 180)
 
