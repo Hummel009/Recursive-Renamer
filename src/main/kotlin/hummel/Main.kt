@@ -50,18 +50,15 @@ class GUI : JFrame() {
 
 	private fun rename(path: String, from: String, to: String) {
 		val inputDirectory = File(path)
-		val files = inputDirectory.listFiles()
-		if (files != null) {
-			for (file in files) {
-				if (file.isDirectory) {
-					rename(file.path, from, to)
-				} else {
-					val fileName = file.name
-					if (fileName.contains(from)) {
-						val newFileName = fileName.replace(from, to)
-						val newFile = File(file.parent, newFileName)
-						file.renameTo(newFile)
-					}
+		inputDirectory.listFiles()?.forEach {
+			if (it.isDirectory) {
+				rename(it.path, from, to)
+			} else {
+				val fileName = it.name
+				if (fileName.contains(from)) {
+					val newFileName = fileName.replace(from, to)
+					val newFile = File(it.parent, newFileName)
+					it.renameTo(newFile)
 				}
 			}
 		}
