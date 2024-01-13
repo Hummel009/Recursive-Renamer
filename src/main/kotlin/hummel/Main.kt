@@ -35,27 +35,37 @@ class GUI : JFrame() {
 		}
 	}
 
-	private fun process(pathField: JTextField, fromField: JTextField, toField: JTextField) {
+	private fun process(
+		pathField: JTextField, fromField: JTextField, toField: JTextField, ignoreCase: Boolean, renameFolders: Boolean
+	) {
 		if (pathField.text.isEmpty() || fromField.text.isEmpty() || toField.text.isEmpty()) {
 			JOptionPane.showMessageDialog(this, "Fill the fields", "Error", JOptionPane.ERROR_MESSAGE)
 			return
 		}
 
-		rename(pathField.text, fromField.text, toField.text)
+		rename(pathField.text, fromField.text, toField.text, ignoreCase, renameFolders)
 
 		JOptionPane.showMessageDialog(
 			this, "Rename complete", "Message", JOptionPane.INFORMATION_MESSAGE
 		)
 	}
 
-	private fun rename(path: String, from: String, to: String) {
+	private fun rename(path: String, from: String, to: String, ignoreCase: Boolean, renameFolders: Boolean) {
 		val inputDirectory = File(path)
 		inputDirectory.listFiles()?.forEach {
 			if (it.isDirectory) {
-				rename(it.path, from, to)
+				rename(it.path, from, to, ignoreCase, renameFolders)
+				if (renameFolders) {
+					val folderName = it.name
+					if (folderName.contains(from, ignoreCase)) {
+						val newFolderName = folderName.replace(from, to, ignoreCase)
+						val newFolder = File(it.parent, newFolderName)
+						it.renameTo(newFolder)
+					}
+				}
 			} else {
 				val fileName = it.name
-				if (fileName.contains(from)) {
+				if (fileName.contains(from, ignoreCase)) {
 					val newFileName = fileName.replace(from, to)
 					val newFile = File(it.parent, newFileName)
 					it.renameTo(newFile)
@@ -67,7 +77,7 @@ class GUI : JFrame() {
 	init {
 		title = "Hummel009's Recursive Renamer"
 		defaultCloseOperation = EXIT_ON_CLOSE
-		setBounds(100, 100, 500, 180)
+		setBounds(100, 100, 500, 200)
 
 		val contentPanel = JPanel()
 		contentPanel.border = EmptyBorder(5, 5, 5, 5)
@@ -99,16 +109,25 @@ class GUI : JFrame() {
 		toPanel.add(toLabel)
 		toPanel.add(toField)
 
+		val checkboxPanel = JPanel()
+		val checkbox1 = JCheckBox("Ignore Case")
+		checkbox1.isSelected = false
+		checkboxPanel.add(checkbox1)
+		val checkbox2 = JCheckBox("Rename folders too")
+		checkbox2.isSelected = false
+		checkboxPanel.add(checkbox2)
+
 		val processPanel = JPanel()
 		val processButton = JButton("Process")
 		processButton.addActionListener {
-			process(inputField, fromField, toField)
+			process(inputField, fromField, toField, checkbox1.isSelected, checkbox2.isSelected)
 		}
 		processPanel.add(processButton)
 
 		contentPanel.add(inputPanel)
 		contentPanel.add(fromPanel)
 		contentPanel.add(toPanel)
+		contentPanel.add(checkboxPanel)
 		contentPanel.add(processPanel)
 
 		setLocationRelativeTo(null)
