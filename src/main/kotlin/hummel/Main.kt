@@ -77,7 +77,7 @@ class GUI : JFrame() {
 	init {
 		title = "Hummel009's Recursive Renamer"
 		defaultCloseOperation = EXIT_ON_CLOSE
-		setBounds(100, 100, 500, 200)
+		setBounds(100, 100, 500, 210)
 
 		val contentPanel = JPanel()
 		contentPanel.border = EmptyBorder(5, 5, 5, 5)
