@@ -9,7 +9,8 @@
 [![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=Hummel009_Recursive-Renamer&metric=sqale_index)](https://sonarcloud.io/summary/overall?id=Hummel009_Recursive-Renamer)
 [![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=Hummel009_Recursive-Renamer&metric=ncloc)](https://sonarcloud.io/summary/overall?id=Hummel009_Recursive-Renamer)
 
-Программа для переименовывания файлов в папке и её подпапках на любую глубину. Была разработана для исправления орфографических ошибок в названиях файлов сразу во всех версиях мода Legendary Item.
+Программа для переименовывания файлов в папке и её подпапках на любую глубину. Была разработана для исправления
+орфографических ошибок в названиях файлов сразу во всех версиях мода Legendary Item.
 
 ## Общая информация
 
