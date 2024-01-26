@@ -77,7 +77,7 @@ class GUI : JFrame() {
 	init {
 		title = "Hummel009's Recursive Renamer"
 		defaultCloseOperation = EXIT_ON_CLOSE
-		setBounds(100, 100, 500, 210)
+		setBounds(100, 100, 600, 270)
 
 		val contentPanel = JPanel()
 		contentPanel.border = EmptyBorder(5, 5, 5, 5)
@@ -86,8 +86,8 @@ class GUI : JFrame() {
 		contentPane = contentPanel
 
 		val inputPanel = JPanel()
-		val inputLabel = JLabel("Input path:")
-		inputLabel.preferredSize = Dimension(80, inputLabel.preferredSize.height)
+		val inputLabel = JLabel("Folder path:")
+		inputLabel.preferredSize = Dimension(90, inputLabel.preferredSize.height)
 		val inputField = JTextField(24)
 		val inputButton = JButton("Select path")
 		inputButton.addActionListener { selectPath(inputField, true) }
@@ -97,14 +97,14 @@ class GUI : JFrame() {
 
 		val fromPanel = JPanel()
 		val fromLabel = JLabel("Replace this:")
-		fromLabel.preferredSize = Dimension(80, fromLabel.preferredSize.height)
+		fromLabel.preferredSize = Dimension(90, fromLabel.preferredSize.height)
 		val fromField = JTextField(24)
 		fromPanel.add(fromLabel)
 		fromPanel.add(fromField)
 
 		val toPanel = JPanel()
 		val toLabel = JLabel("With this:")
-		toLabel.preferredSize = Dimension(80, toLabel.preferredSize.height)
+		toLabel.preferredSize = Dimension(90, toLabel.preferredSize.height)
 		val toField = JTextField(24)
 		toPanel.add(toLabel)
 		toPanel.add(toField)
